@@ -1,14 +1,31 @@
-class Player {
-  static get VERSION() {
-    return '0.2';
-  }
+function toNum (c) {
+  switch (c) {
+    case 'J':
+      return 11
+    case 'Q':
+      return 12
+    case 'K':
+      return 13
+    case 'A':
+      return 14
 
-  static betRequest(gameState, bet) {
-    bet(0);
-  }
-
-  static showdown(gameState) {
+    default:
+      return parseInt(c)
   }
 }
 
-module.exports = Player;
+class Player {
+  static get VERSION () {
+    return '0.2'
+  }
+
+  static betRequest (gameState, bet) {
+    console.log(gameState)
+    bet(0)
+  }
+
+  static showdown (gameState) {
+  }
+}
+
+module.exports = Player
