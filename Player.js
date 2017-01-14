@@ -29,6 +29,11 @@ function isFolded (gameState) {
   return gameState.pot === (gameState.small_blind * 3)
 }
 
+function isBuyIn (gameState) {
+  return gameState.current_buy_in - gameState.players[gameState.in_action][bet] < (gameState.small_blind * 4)
+}
+
+
 // function getActivePlayers (gameState) {
 //   return gameState.players.filter((player) => player.status === 'active')
 // }
@@ -71,13 +76,12 @@ class Player {
       const folded = isFolded(gameState)
       // const posAfter = getPosition(gameState, myPlayer).after
       // Steal blinds from button with any two.
-      if (folded && (gameState.in_action === gameState.dealer)) {
-          bet(gameState.current_buy_in - gameState.players[gameState.in_action][bet] + gameState.minimum_raise)
-      } else if (folded && percentage <= 30) {
+      if (folded && percentage <= 30) {
         bet(myPlayer.stack)
-      } else if (folded && percentage <= 60) {
-          bet(0)
-          //current_buy_in - players[in_action][bet] + minimum_raise
+      } else if (folded && (gameState.in_action === gameState.dealer)) {
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action][bet] + gameState.minimum_raise)
+      } else if (isBuyIn(gameState) && percentage <= 60) {
+        bet(gameState.current_buy_in - gameState.players[gameState.in_action][bet] + gameState.minimum_raise)
       } else if (!folded && percentage <= 12) {
         bet(myPlayer.stack)
       } else {
