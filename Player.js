@@ -33,7 +33,7 @@ class Player {
     const cards = myPlayer.hole_cards
     const cValue = cardsValue(cards)
     log.info(gameState)
-    log.info(`${myPlayer} ${cards} ${cValue}`)
+    log.info(`${JSON.stringify(myPlayer)} ${JSON.stringify(cards)} ${JSON.stringify(cValue)}`)
     if (cValue > 15) {
       return bet(myPlayer.stack)
     } else {
