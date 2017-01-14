@@ -39,24 +39,10 @@ class Player {
       const strategyQuery = {effStack: efCalculator.calculate(gameState), playersBehind: posHelper.getPosition(gameState, myPlayer).after, folded}
       const strategyPercentage = strategyTable.query(strategyQuery)
 
-      if (strategyQuery.effStack <= 30) {
-        if (percentage < strategyPercentage) {
-          bet(myPlayer.stack)
-        } else {
-          bet(0)
-        }
+      if (percentage < strategyPercentage) {
+        bet(myPlayer.stack)
       } else {
-        if (folded && percentage <= 30) {
-          bet(myPlayer.stack)
-        } else if (folded && (gameState.in_action === gameState.dealer)) {
-          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.small_blind)
-        } else if (isBuyIn(gameState) && percentage <= 60) {
-          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.small_blind)
-        } else if (!folded && percentage <= 12) {
-          bet(myPlayer.stack)
-        } else {
-          bet(0)
-        }
+        bet(0)
       }
     } catch (e) {
       // global.log.error('Exception: ' + e.message)
