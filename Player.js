@@ -73,7 +73,8 @@ class Player {
       if (folded && percentage <= 30) {
         bet(myPlayer.stack)
       } else if (folded && percentage <= 60) {
-          bet(myPlayer.minimum_raise)
+          bet(0)
+          //current_buy_in - players[in_action][bet] + minimum_raise
       } else if (!folded && percentage <= 12) {
         bet(myPlayer.stack)
       } else {
