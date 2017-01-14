@@ -18,7 +18,7 @@
     "tape": "^4.6.3"
   },
   "scripts": {
-    "test": "echo 0",
-    "test-asd": "node test.js | tap-spec"
+    "test": "node test",
+    "test-pretty": "node test.js | tap-spec"
   }
 }
