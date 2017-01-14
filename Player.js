@@ -79,9 +79,9 @@ class Player {
       if (folded && percentage <= 30) {
         bet(myPlayer.stack)
       } else if (folded && (gameState.in_action === gameState.dealer)) {
-          bet(gameState.current_buy_in - gameState.players[gameState.in_action][bet] + gameState.minimum_raise)
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise)
       } else if (isBuyIn(gameState) && percentage <= 60) {
-        bet(gameState.current_buy_in - gameState.players[gameState.in_action][bet] + gameState.minimum_raise)
+        bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise)
       } else if (!folded && percentage <= 12) {
         bet(myPlayer.stack)
       } else {
