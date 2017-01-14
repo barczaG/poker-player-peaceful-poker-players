@@ -60,24 +60,31 @@ class Player {
   }
 
   static betRequest (gameState, bet) {
-    const myPlayer = gameState.players[gameState.in_action]
-    const cards = myPlayer.hole_cards
-    // const cValue = cardsValue(cards)
+      const myPlayer = gameState.players[gameState.in_action]
 
-    const percentage = cards2Table.getPercentage(cards)
+      try {
+          const cards = myPlayer.hole_cards
+          // const cValue = cardsValue(cards)
 
-    const folded = isFolded(gameState)
-    // const posAfter = getPosition(gameState, myPlayer).after
-    if (folded && percentage <= 40) {
-      bet(myPlayer.stack)
-    } else if (!folded && percentage <= 12) {
-      bet(myPlayer.stack)
-    } else {
-      bet(0)
-    }
+          const percentage = cards2Table.getPercentage(cards)
 
-    log.info(gameState)
-    log.info(`${JSON.stringify(myPlayer)} ${JSON.stringify(cards)} ${JSON.stringify(percentage)}`)
+          const folded = isFolded(gameState)
+          // const posAfter = getPosition(gameState, myPlayer).after
+          if (folded && percentage <= 40) {
+              bet(myPlayer.stack)
+          } else if (!folded && percentage <= 12) {
+              bet(myPlayer.stack)
+          } else {
+              bet(0)
+          }
+
+          log.info(gameState)
+          log.info(`${JSON.stringify(myPlayer)} ${JSON.stringify(cards)} ${JSON.stringify(percentage)}`)
+      }
+      catch (e) {
+          log.error('Exception: ' + e.message)
+          bet(myPlayer.stack)
+      }
   }
 
   static showdown (gameState) {
