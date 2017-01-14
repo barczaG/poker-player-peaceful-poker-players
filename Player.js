@@ -36,7 +36,7 @@ class Player {
 
       const percentage = cards2Table.getPercentage(cards)
       const folded = isFolded(gameState)
-      const strategyQuery = {effStack: efCalculator(gameState), playersBehind: posHelper.getPosition(gameState, myPlayer).after, folded}
+      const strategyQuery = {effStack: efCalculator.calculate(gameState), playersBehind: posHelper.getPosition(gameState, myPlayer).after, folded}
       const strategyPercentage = strategyTable.query(strategyQuery)
 
       if (strategyQuery.effStack <= 30) {
@@ -49,9 +49,9 @@ class Player {
         if (folded && percentage <= 30) {
           bet(myPlayer.stack)
         } else if (folded && (gameState.in_action === gameState.dealer)) {
-          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise)
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.small_blind)
         } else if (isBuyIn(gameState) && percentage <= 60) {
-          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise)
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.small_blind)
         } else if (!folded && percentage <= 12) {
           bet(myPlayer.stack)
         } else {
