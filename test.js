@@ -11,6 +11,8 @@ const gameStateFixture = require('./game-state-fixture.json')
 const strategyTable = require('./strategy-table')
 const strategyTableFixture = require('./test/strategy-table-fixture.json')
 
+const posHelper = require('./pos-helper')
+
 // test.skip('correct card value',
 //   function (t) {
 //     t.equal(playerJs.toNum('J'), 11)
@@ -55,6 +57,35 @@ test('cards 2 table percentage should work', (t) => {
 test('strategy table', (t) => {
   let query = {effStack: 50, playersBehind: 2, folded: true}
   t.equal(strategyTable.query(query, strategyTableFixture), 13)
+
+  t.end()
+})
+
+test('poshelper poshelper', (t) => {
+  let pos = posHelper.posHelper(4, 2, 5)
+  t.eq(pos, {pos: 4, after: 1})
+
+  pos = posHelper.posHelper(2, 4, 5)
+  t.eq(pos, {pos: 3, after: 2})
+
+  t.end()
+})
+
+test('poshelper getPosition', (t) => {
+  let pos = posHelper.posHelper(4, 2, 5)
+  t.eq(pos, {pos: 4, after: 1})
+
+  pos = posHelper.posHelper(2, 4, 5)
+  t.eq(pos, {pos: 3, after: 2})
+
+  pos = posHelper.posHelper(2, 4, 4)
+  t.eq(pos, {pos: 3, after: 2})
+
+  pos = posHelper.posHelper(1, 2, 3)
+  t.eq(pos, {pos: 3, after: 2})
+
+  pos = posHelper.posHelper(2, 1, 3)
+  t.eq(pos, {pos: 3, after: 2})
 
   t.end()
 })
