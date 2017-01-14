@@ -2,13 +2,9 @@
 const test = require('tape')
 // const playerJs = require('./Player')
 const cards2Table = require('./cards-2-table')
-
-// test.skip('correct card value',
-//   function (t) {
-//     t.equal(playerJs.toNum('J'), 11)
-//     t.end()
-//   }
-// )
+// const Player = require('./Player')
+// const gameState = require('./test/game-state')
+// const sinon = require('sinon')
 
 test('cards 2 table convert should work', (t) => {
   let cards = [{rank: '4', suit: 'spades'}, {rank: '5', suit: 'spades'}]
@@ -38,3 +34,10 @@ test('cards 2 table percentage should work', (t) => {
 
   t.end()
 })
+
+// test('bet request should work', (t) => {
+//   const spy = sinon.spy()
+//   Player.betRequest(gameState, spy)
+//   t.equal(spy.calledOnce, true)
+//   t.end()
+// })
