@@ -5,6 +5,20 @@ const cards2Table = require('./cards-2-table')
 // const Player = require('./Player')
 // const gameState = require('./test/game-state')
 // const sinon = require('sinon')
+const effectiveStackCalculator = require('./effective-stack-calculator')
+const gameStateFixture = require('./game-state-fixture.json')
+
+// test.skip('correct card value',
+//   function (t) {
+//     t.equal(playerJs.toNum('J'), 11)
+//     t.end()
+//   }
+// )
+
+test('correct effectiveStack',function (t) {
+	t.equal(effectiveStackCalculator.calculate(gameStateFixture), 50.5)
+	t.end()
+})
 
 test('cards 2 table convert should work', (t) => {
   let cards = [{rank: '4', suit: 'spades'}, {rank: '5', suit: 'spades'}]
