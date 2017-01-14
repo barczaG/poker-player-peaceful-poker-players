@@ -9,13 +9,6 @@ const Player = require('./Player')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// var Logger = require('le_node')
-// global.log = new Logger({
-//   token: 'fda2a63e-3dd4-4b70-9b73-097d51eb8d6d'
-// })
-
-require('./gridspree-refresh')
-
 app.post('/', (req, res) => {
   const { action, game_state } = req.body
 

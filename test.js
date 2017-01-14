@@ -8,9 +8,6 @@ const cards2Table = require('./cards-2-table')
 const effectiveStackCalculator = require('./effective-stack-calculator')
 const gameStateFixture = require('./game-state-fixture.json')
 
-const strategyTable = require('./strategy-table')
-const strategyTableFixture = require('./test/strategy-table-fixture.json')
-
 // test.skip('correct card value',
 //   function (t) {
 //     t.equal(playerJs.toNum('J'), 11)
@@ -18,9 +15,9 @@ const strategyTableFixture = require('./test/strategy-table-fixture.json')
 //   }
 // )
 
-test('correct effectiveStack', function (t) {
-  t.equal(effectiveStackCalculator.calculate(gameStateFixture), 50.5)
-  t.end()
+test('correct effectiveStack',function (t) {
+	t.equal(effectiveStackCalculator.calculate(gameStateFixture), 50.5)
+	t.end()
 })
 
 test('cards 2 table convert should work', (t) => {
@@ -48,13 +45,6 @@ test('cards 2 table percentage should work', (t) => {
 
   cards = [{rank: 'A', suit: 'spades'}, {rank: 'Q', suit: 'cubes'}]
   t.equal(cards2Table.getPercentage(cards), 10.65)
-
-  t.end()
-})
-
-test('strategy table', (t) => {
-  let query = {effStack: 50, playersBehind: 2, folded: true}
-  t.equal(strategyTable.query(query, strategyTableFixture), 13)
 
   t.end()
 })

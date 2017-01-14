@@ -1,5 +1,0 @@
-module.exports = {
-  query: function ({effStack, playersBehind, percentage}) {
-
-  }
-}
