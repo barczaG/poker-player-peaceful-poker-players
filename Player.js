@@ -69,8 +69,8 @@ class Player {
       const percentage = cards2Table.getPercentage(cards)
 
       const folded = isFolded(gameState)
-          // const posAfter = getPosition(gameState, myPlayer).after
-      if (folded && percentage <= 40) {
+      // const posAfter = getPosition(gameState, myPlayer).after
+      if (folded && percentage <= 30) {
         bet(myPlayer.stack)
       } else if (!folded && percentage <= 12) {
         bet(myPlayer.stack)
