@@ -8,9 +8,8 @@ function isFolded (gameState) {
 }
 
 function isBuyIn (gameState) {
-  return gameState.current_buy_in - gameState.players[gameState.in_action][bet] < (gameState.small_blind * 4)
+  return gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] < (gameState.small_blind * 4)
 }
-
 
 // function getActivePlayers (gameState) {
 //   return gameState.players.filter((player) => player.status === 'active')
