@@ -1,3 +1,8 @@
+var Logger = require('le_node')
+var log = new Logger({
+  token: 'fda2a63e-3dd4-4b70-9b73-097d51eb8d6d'
+})
+
 function toNum (c) {
   switch (c) {
     case 'J':
@@ -20,6 +25,7 @@ class Player {
   }
 
   static betRequest (gameState, bet) {
+    log.info(gameState)
     console.log(gameState)
     bet(0)
   }
