@@ -2,6 +2,9 @@
 const test = require('tape')
 // const playerJs = require('./Player')
 const cards2Table = require('./cards-2-table')
+// const Player = require('./Player')
+// const gameState = require('./test/game-state')
+// const sinon = require('sinon')
 const effectiveStackCalculator = require('./effective-stack-calculator')
 const gameStateFixture = require('./game-state-fixture.json')
 
@@ -45,3 +48,10 @@ test('cards 2 table percentage should work', (t) => {
 
   t.end()
 })
+
+// test('bet request should work', (t) => {
+//   const spy = sinon.spy()
+//   Player.betRequest(gameState, spy)
+//   t.equal(spy.calledOnce, true)
+//   t.end()
+// })
