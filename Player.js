@@ -72,7 +72,7 @@ class Player {
       // const posAfter = getPosition(gameState, myPlayer).after
       // Steal blinds from button with any two.
       if (folded && (gameState.in_action === gameState.dealer)) {
-          bet(gameState.minimum_raise)
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action][bet] + gameState.minimum_raise)
       } else if (folded && percentage <= 30) {
         bet(myPlayer.stack)
       } else if (folded && percentage <= 60) {
