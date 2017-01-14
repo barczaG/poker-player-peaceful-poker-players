@@ -10,5 +10,12 @@
     "body-parser": "1.15.2",
     "express": "4.x",
     "le_node": "^1.7.0"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "node test.js"
   }
 }
