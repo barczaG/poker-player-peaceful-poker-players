@@ -64,7 +64,7 @@ class Player {
     const cards = myPlayer.hole_cards
     // const cValue = cardsValue(cards)
 
-    const percentage = cards2Table(cards)
+    const percentage = cards2Table.getPercentage(cards)
 
     const folded = isFolded(gameState)
     // const posAfter = getPosition(gameState, myPlayer).after
