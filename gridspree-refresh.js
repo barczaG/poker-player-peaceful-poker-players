@@ -5,6 +5,8 @@ function refresh (cb) {
     if (!error && response.statusCode === 200) {
       console.log(body) // Show the HTML for the Google homepage.
       global.strategyTable = body.rows
+      console.log('STAREGY TABLE REFRESHED')
+      console.log(global.strategyTable)
       // global.log.info('STAREGY TABLE REFRESHED')
     }
   })
