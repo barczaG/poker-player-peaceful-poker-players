@@ -7,6 +7,11 @@ function isFolded (gameState) {
   return gameState.pot === (gameState.small_blind * 3)
 }
 
+function isBuyIn (gameState) {
+  return gameState.current_buy_in - gameState.players[gameState.in_action][bet] < (gameState.small_blind * 4)
+}
+
+
 // function getActivePlayers (gameState) {
 //   return gameState.players.filter((player) => player.status === 'active')
 // }
@@ -35,10 +40,24 @@ class Player {
       const strategyQuery = {effStack: efCalculator(gameState), playersBehind: posHelper.getPosition(gameState, myPlayer).after, folded}
       const strategyPercentage = strategyTable.query(strategyQuery)
 
-      if (percentage < strategyPercentage) {
-        bet(myPlayer.stack)
+      if (strategyQuery.effStack <= 30) {
+        if (percentage < strategyPercentage) {
+          bet(myPlayer.stack)
+        } else {
+          bet(0)
+        }
       } else {
-        bet(0)
+        if (folded && percentage <= 30) {
+          bet(myPlayer.stack)
+        } else if (folded && (gameState.in_action === gameState.dealer)) {
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise)
+        } else if (isBuyIn(gameState) && percentage <= 60) {
+          bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise)
+        } else if (!folded && percentage <= 12) {
+          bet(myPlayer.stack)
+        } else {
+          bet(0)
+        }
       }
     } catch (e) {
       // global.log.error('Exception: ' + e.message)
