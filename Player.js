@@ -19,15 +19,26 @@ function toNum (c) {
   }
 }
 
+function cardsValue (cards) {
+  return toNum(cards[0].rank) + toNum(cards[1].rank)
+}
+
 class Player {
   static get VERSION () {
-    return '0.2'
+    return '0.3'
   }
 
   static betRequest (gameState, bet) {
+    const myPlayer = gameState.players[gameState.in_action]
+    const cards = myPlayer.hole_cards
+    const cValue = cardsValue(cards)
     log.info(gameState)
-    console.log(gameState)
-    bet(0)
+    log.info(myPlayer, cards, cValue)
+    if (cValue > 15) {
+      return bet(myPlayer.stack)
+    } else {
+      bet(0)
+    }
   }
 
   static showdown (gameState) {
